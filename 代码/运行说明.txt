@@ -1,0 +1,35 @@
+202410020103-李怡瑶-软件工程实验三  代码说明
+================================================
+
+目录结构
+  src/a1_1/  A1-1 优良品质的马
+             Thoroughbred.java（类本体：3 私有属性 + 3 公有操作）
+             Demo.java（构造三代马，验证 getCurrentAge / getFather / getMother）
+  src/a1_2/  A1-2 学院：聚合与组合
+             College.java（对 Building 聚合、对 Course 组合，close() 演示销毁差异）
+             Building.java / Course.java（Course 构造方法落实约束注释）
+             Demo.java
+  src/a1_3/  A1-3 学院 School：类间关系与多重性
+             School / Department / Instructor / Subject / Student
+             Demo.java（检验 1..* 、1..3 、1..5 的上下界）
+  src/a1_4/  A1-4 简化网上购物系统
+             Customer / Order / OrderDetail / Product
+             Payment（抽象）+ Credit / Cash / WireTransfer / AliPay / WeixinPay（5 个子类）
+             OrderStatus（枚举：CREATE / PAID / SHIPPING / DELIVERED / CANCEL）
+             Demo.java（下单 → 计价 → 支付 → 发货 → 送达，含状态机保护）
+  运行结果.txt  四个 Demo 的完整输出
+
+编译与运行（JDK 17，在本目录下执行）
+  javac -encoding UTF-8 -d out src/a1_1/*.java src/a1_2/*.java src/a1_3/*.java src/a1_4/*.java
+  java -Dfile.encoding=UTF-8 -cp out a1_1.Demo
+  java -Dfile.encoding=UTF-8 -cp out a1_2.Demo
+  java -Dfile.encoding=UTF-8 -cp out a1_3.Demo
+  java -Dfile.encoding=UTF-8 -cp out a1_4.Demo
+
+说明
+  1. 类图中标注的多重性与约束在代码中都做了运行时校验，例如
+     Instructor.teach() 超过 3 门课会抛异常、Course 绑定 null 建筑会抛异常。
+  2. Product 的 - price 属性是题目未列出但 getPriceForQuantity() 必需的补充，
+     报告中已在表 4-5 标注。
+  3. 所有中文注释与输出均为 UTF-8，编译时请带 -encoding UTF-8，
+     运行时建议加 -Dfile.encoding=UTF-8 以免控制台中文乱码。
